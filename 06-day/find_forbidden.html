@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        const forbidden = new Set(["stupid", "moron", "imbecile"]);
+
+        function checkForbidden() {
+            const words = document.getElementById("userTextArea").value.split(/\s+/);
+            const hasForbidden = words.find((word) => forbidden.has(word.toLowerCase()));
+            window.alert(hasForbidden ? "You are bad person." : "You are a good person.");
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        <label for="userTextArea">User Text Area:</label><br/><br/>
+        <textarea id="userTextArea" name="userTextArea" rows="10" cols="40"></textarea><br/><br/>
+        <input type="button" onclick="checkForbidden()" value="Check Words"/>
+    </form>
+</div>
+<h3>Forbidden Words</h3>
+<div id="forbiddenWords">
+</div>
+</body>
+</html>
