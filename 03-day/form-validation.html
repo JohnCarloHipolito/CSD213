@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .invalid-input {
+            color: red
+        }
+    </style>
+    <script>
+        function validate_form() {
+            clear_err();
+            validate_user();
+            validate_email();
+            validate_pass();
+            validate_confirm();
+            validate_address();
+        }
+
+        function clear_err() {
+            var err_ids = ['user_err', 'email_err', 'pass_err', 'confirm_err', 'address_err'];
+            for (var i = 0; i < err_ids.length; i++) {
+                document.getElementById(err_ids[i]).innerHTML = "";
+            }
+        }
+
+        function validate_user() {
+            var user = document.getElementById("user").value;
+
+            if (user == "") {
+                document.getElementById("user_err").innerHTML = "Please enter your name";
+            } else if (!user.match(/^([a-zA-Z\s]).+$/)) {
+                document.getElementById("user_err").innerHTML = "Please enter charaters and space only";
+            }
+
+        }
+
+        function validate_email() {
+            var email = document.getElementById("email").value;
+
+            if (email == "") {
+                document.getElementById("email_err").innerHTML = "Please enter your email address";
+            } else if (!email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                document.getElementById("email_err").innerHTML = "Please enter a valid email address";
+            }
+        }
+
+        function validate_pass() {
+            var pass = document.getElementById("pass").value;
+
+            if (pass == "") {
+                document.getElementById("pass_err").innerHTML = "Please enter a password";
+            } else if (pass.length < 6) {
+                document.getElementById("pass_err").innerHTML = "Enter a minimum of 6 characters";
+            } else if (pass.match(/^[a-z]+$/)) {
+                document.getElementById("pass_err").innerHTML = "Password must contain lowercase character/s";
+            } else if (pass.match(/^[A-Z]+$/)) {
+                document.getElementById("pass_err").innerHTML = "Password must contain uppercase character/s";
+            } else if (pass.match(/^[0-9]+$/)) {
+                document.getElementById("pass_err").innerHTML = "Password must contain number/s";
+            } else if (pass.match(/^[!@#$%^&*()]$/)) {
+                document.getElementById("pass_err").innerHTML = "Password must contain special character/s [!@#$%^&*()]";
+            }
+        }
+
+        function validate_confirm() {
+            var pass = document.getElementById("pass").value;
+            var confirm = document.getElementById("confirm".value);
+            if (confirm == "") {
+                document.getElementById("confirm_err").innerHTML = "Please confirm the password";
+            } else if (pass != confirm) {
+                document.getElementById("confirm_err").innerHTML = "Password does not match";
+            }
+        }
+
+        function validate_address() {
+            var address = document.getElementById("address").value;
+            if (address == "") {
+                document.getElementById("address_err").innerHTML = "Please enter your address";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="validateForm()">
+        Name:<br />
+        <input id="user" type="text" placeholder="user" required />
+        <div id="user_err" class="invalid-input"></div><br />
+
+        Email:<br />
+        <input id="email" type="text" placeholder="email" required />
+        <div id="email_err" class="invalid-input"></div><br />
+
+        Password:<br />
+        <input id="pass" type="password" placeholder="password" required />
+        <div id="pass_err" class="invalid-input"></div><br />
+
+        Confirm Password:<br />
+        <input id="confirm" type="password" placeholder="confirm password" required />
+        <div id="confirm_err" class="invalid-input"></div><br />
+
+        Address:<br />
+        <textarea id="address" type="text" placeholder="address" rows="5" required></textarea>
+        <div id="address_err" class="invalid-input"></div><br />
+
+        <input type="button" onclick="validate_form()" value="signup" />
+    </form>
+</body>
+
+</html>

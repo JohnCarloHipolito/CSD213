@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function changeColor(bgcolor) {
+            var divElement = document.getElementById('color-id');
+
+            switch (bgcolor) {
+                case 'r': divElement.setAttribute('class', 'default red');
+                    break;
+                case 'g': divElement.setAttribute('class', 'default green');
+                    break;
+                case 'b': divElement.setAttribute('class', 'default blue');
+                    break;
+                default: divElement.setAttribute('class', 'default red');
+            }
+
+        }
+    </script>
+    <style>
+        .default {
+            width: 480px;
+            height: 480px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="changeColor('r')">red</button>
+    <button onclick="changeColor('g')">green</button>
+    <button onclick="changeColor('b')">blue</button>
+    <br />
+    <br />
+    <div class="default red" id="color-id">
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black
+        }
+
+        .hide-message {
+            display: none
+        }
+
+        .show-message {
+            display: block
+        }
+    </style>
+    <script>
+        function initGlobalVar() {
+            window.rowTracker = document.getElementById('table1').rows.length
+        }
+
+        function insertRow() {
+            var table1 = document.getElementById('table1')
+            document.getElementById('message1').setAttribute('class', 'hide-message')
+
+            window.rowTracker++
+            var row = table1.insertRow(-1)
+            row.insertCell(0).textContent = "Row" + window.rowTracker + " Col1"
+            row.insertCell(1).textContent = "Row" + window.rowTracker + " Col2"
+        }
+
+        function deleteRow() {
+            var table1 = document.getElementById('table1')
+            if (table1.rows.length > 0) {
+                table1.deleteRow(0)
+            } else {
+                document.getElementById('message1').setAttribute('class', 'show-message')
+            }
+        }
+    </script>
+</head>
+
+<body onload="initGlobalVar()">
+    <table id="table1">
+        <tr>
+            <td>Row1 Col1</td>
+            <td>Row1 Col2</td>
+        </tr>
+        <tr>
+            <td>Row2 Col1</td>
+            <td>Row2 Col2</td>
+        </tr>
+        <tr>
+            <td>Row3 Col1</td>
+            <td>Row3 Col2</td>
+        </tr>
+        <tr>
+            <td>Row4 Col1</td>
+            <td>Row4 Col2</td>
+        </tr>
+        <tr>
+            <td>Row5 Col1</td>
+            <td>Row5 Col2</td>
+        </tr>
+    </table>
+    <br />
+    <button onclick="insertRow()">Insert Row</button>
+    <button onclick="deleteRow()">Delete Row</button>
+    <br />
+    <br />
+    <div id="message1" class="hide-message">Message: No more rows to delete</div>
+</body>
+
+</html>

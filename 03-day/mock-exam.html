@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black
+        }
+
+        .error-text {
+            color: red;
+        }
+
+        .form1 .add-product {
+            display: inline-block;
+            font-size: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <form action="" class="form1">
+
+        <div class="add-product">
+            <label for="p_name">Product Name:</label>
+            <input id="p_name" type="text" placeholder="Product Name"/>
+            <div id="p_name_err" class="error-text"></div>
+            <br/>
+        </div>
+
+        <div class="add-product">
+            <label for="p_price">Product Price:</label>
+            <input id="p_price" type="text" placeholder="Product Price"/>
+            <div id="p_price_err" class="error-text"></div>
+            <br/>
+        </div>
+
+        <div class="add-product">
+            <input onclick="validateProductEntry()" type="button" value="Add"/><br/>
+        </div>
+    </form>
+</div>
+<div>
+    <table id="product_table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Comment</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+</div>
+<script>
+    function validateProductEntry() {
+        const err_ids = ['p_name_err', 'p_price_err'];
+        for (let i = 0; i < err_ids.length; i++) {
+            document.getElementById(err_ids[i]).innerHTML = "";
+        }
+
+        let isValid = true;
+
+        var p_name = document.getElementById("p_name").value.trim();
+        if (!p_name.match(/^[a-zA-Z\s]+$/)) {
+            document.getElementById("p_name_err").innerHTML = "Please enter a valid name";
+            isValid = false;
+        }
+
+        var p_price = document.getElementById("p_price").value.trim();
+        if (Number(p_price) != p_price) {
+            document.getElementById("p_price_err").innerHTML = "Please enter a valid price";
+            isValid = false;
+        }
+
+        if (isValid) {
+            const row = document.getElementById('product_table').insertRow(-1);
+            row.insertCell(0).textContent = p_name;
+            row.insertCell(1).textContent = p_price;
+            row.insertCell(2).textContent = p_price > 20 ? "expensive" : "cheap";
+            row.insertCell(3).appendChild(createDeleteBtn());
+        }
+    }
+
+    function createDeleteBtn() {
+        const deleteBtn = document.createElement("input");
+        deleteBtn.type = "button";
+        deleteBtn.value = "delete";
+        deleteBtn.onclick = deleteCurrent;
+        return deleteBtn;
+    }
+
+    function deleteCurrent(evt) {
+        const currentRow = evt.currentTarget.parentElement.parentElement.rowIndex;
+        document.getElementById('product_table').deleteRow(currentRow);
+    }
+
+</script>
+</body>
+
+</html>

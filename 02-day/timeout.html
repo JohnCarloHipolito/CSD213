@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showAd() {
+            document.getElementById('ad').setAttribute('class', 'show-ad');
+        }
+        setTimeout(showAd, 5000);
+    </script>
+    <style>
+        .hide-ad {
+            display: none;
+        }
+        .show-ad {
+            background-color: red;
+            display: block;
+            font-size: 3rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+    <div class="hide-ad" id="ad">Winter Sale is ON! Upto 75% discount!</div>
+</body>
+
+</html>

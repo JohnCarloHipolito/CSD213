@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function followLink(url, openType) {
+            window.open("https://" + url, openType);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="followLink('google.com', '_blank')">Open on new tab</button>
+    <button onclick="followLink('youtube.com', '_self' )">Open on current tab</button>
+</body>
+
+</html>
